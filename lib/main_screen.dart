@@ -1,3 +1,4 @@
+import 'package:asp_flutter_demo/books_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatelessWidget {
@@ -9,7 +10,9 @@ class MainScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               RaisedButton(
-                onPressed: () {},
+                onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => BooksScreen()));
+                },
                 color: Colors.blueAccent,
                 textColor: Colors.white,
                 child: Text('Książki', style: TextStyle(fontSize: 20)),
