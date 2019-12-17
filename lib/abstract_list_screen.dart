@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 abstract class AbstractListScreen extends StatelessWidget {
 
-  Widget createInternalView();
+  Widget createInternalView(BuildContext context);
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +26,7 @@ abstract class AbstractListScreen extends StatelessWidget {
                 )),
             Container(
               constraints: BoxConstraints.tightFor(height: MediaQuery.of(context).size.height - 108.0),
-              color: Colors.red,
-              child: createInternalView(),
+              child: createInternalView(context),
             )
           ],
         ));

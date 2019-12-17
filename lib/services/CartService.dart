@@ -1,32 +1,26 @@
-
-
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CartService {
 
-  static Future<List<CartEntry>> getCartEntries() {
+  static Future<List<CartEntry>> getCartEntries() async {
 
-    var future = SharedPreferences.getInstance().then((value) {
+    var sharedPreference = await SharedPreferences.getInstance();
 
-      var cartCount = value.getInt("cart.count");
+    var cartCount = sharedPreference.getInt("cart.count");
 
-      var list = List<CartEntry>(cartCount);
+    var list = List<CartEntry>(cartCount);
 
-      for (int i = 0; i < cartCount; i++) {
+    for (int i = 0; i < cartCount; i++) {
 
-        list.add(CartEntry(
-            value.getInt("cart.entry." + i.toString() + ".type"),
-            value.getInt("cart.entry." + i.toString() + ".index"),
-            value.getInt("cart.entry." + i.toString() + ".count")
-        ));
+      list.add(CartEntry(
+          sharedPreference.getInt("cart.entry." + i.toString() + ".type"),
+          sharedPreference.getInt("cart.entry." + i.toString() + ".index"),
+          sharedPreference.getInt("cart.entry." + i.toString() + ".count")
+      ));
 
-      }
+    }
 
-      return list;
-    });
-
-    return future;
+    return list;
   }
 }
 
